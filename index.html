@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Skyez UC Shop — покупка UC для PUBG Mobile. Выберите пакет и оформите заказ через Telegram." />
+  <title>Skyez UC Shop — PUBG Mobile UC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Skyez UC Shop">
+        <span class="brand-mark">S</span>
+        <span>Skyez <b>UC Shop</b></span>
+      </a>
+      <a class="telegram-mini" href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">Telegram <span>↗</span></a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero container">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="dot"></span> PUBG MOBILE · UC SHOP</div>
+        <h1>UC для PUBG Mobile<br><span>быстро и удобно</span></h1>
+        <p>Выберите нужный пакет UC, укажите свой PUBG Mobile ID и отправьте заказ. Все вопросы — в Telegram.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#packs">Выбрать UC</a>
+          <a class="btn btn-ghost" href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">Написать @skyezq</a>
+        </div>
+        <div class="trust-row">
+          <span>⚡ Быстрая обработка</span>
+          <span>🔒 Безопасный заказ</span>
+          <span>💬 Поддержка в Telegram</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-top">
+          <span class="card-label">SKYEZ UC</span>
+          <span class="status"><i></i> online</span>
+        </div>
+        <div class="coin">UC</div>
+        <div class="hero-price">Игровая валюта</div>
+        <p>Пополняйте аккаунт PUBG Mobile без лишних шагов.</p>
+        <div class="hero-card-footer">
+          <span>Support</span>
+          <a href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">@skyezq</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="promo container" aria-label="Skyez UC Shop">
+      <div class="promo-slider">
+        <img class="promo-image active" src="banner-1.jpg" alt="Skyez UC Shop — актуальный прайс" />
+        <img class="promo-image" src="banner-2.jpg" alt="Skyez UC Shop — PUBG Mobile UC" />
+        <div class="promo-dots">
+          <button class="promo-dot active" type="button" aria-label="Баннер 1"></button>
+          <button class="promo-dot" type="button" aria-label="Баннер 2"></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="packs" class="section container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Каталог</div>
+          <h2>Выберите пакет UC</h2>
+        </div>
+        <div class="note">Цены указаны в ₽. Заказ и подтверждение оплаты — через <a href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">@skyezq</a>.</div>
+      </div>
+
+      <div class="packs" id="packGrid"></div>
+      <p class="price-note">* Стоимость может меняться. Актуальную цену перед оплатой уточняйте у <a href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">@skyezq</a>.</p>
+    </section>
+
+    <section class="order-section container" id="order">
+      <div class="order-panel">
+        <div>
+          <div class="eyebrow">Оформление</div>
+          <h2>Оставьте данные для заказа</h2>
+          <p class="muted">После отправки откроется Telegram с готовым текстом заказа для <strong>@skyezq</strong>.</p>
+        </div>
+        <form id="orderForm" class="order-form">
+          <div class="field-group">
+            <label for="nickname">Ник / имя</label>
+            <input id="nickname" name="nickname" placeholder="Например: Skyez" required maxlength="40" />
+          </div>
+          <div class="field-group">
+            <label for="playerId">PUBG Mobile ID</label>
+            <input id="playerId" name="playerId" placeholder="Введите игровой ID" required maxlength="30" />
+          </div>
+          <div class="field-group">
+            <label for="selectedPack">Пакет</label>
+            <select id="selectedPack" name="pack" required></select>
+          </div>
+          <button class="btn btn-primary btn-full" type="submit">Оформить через Telegram ↗</button>
+          <div class="form-hint">Сайт не запрашивает пароль или код подтверждения от аккаунта.</div>
+        </form>
+      </div>
+    </section>
+
+    <section class="faq container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">FAQ</div>
+          <h2>Частые вопросы</h2>
+        </div>
+      </div>
+      <div class="faq-grid">
+        <details>
+          <summary>Что нужно для покупки?</summary>
+          <p>Достаточно выбрать пакет и указать корректный PUBG Mobile ID. После этого заказ передаётся в Telegram.</p>
+        </details>
+        <details>
+          <summary>Где получить помощь?</summary>
+          <p>По всем вопросам обращайтесь в Telegram: <a href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">@skyezq</a>.</p>
+        </details>
+        <details>
+          <summary>Нужно ли сообщать пароль?</summary>
+          <p>Нет. Не передавайте пароль, SMS-коды, коды 2FA или резервные коды.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Skyez UC Shop</span>
+      <span>PUBG Mobile является товарным знаком соответствующего правообладателя. Skyez UC Shop не заявляет о своей аффилированности с PUBG Mobile.</span>
+      <a href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">@skyezq</a>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>

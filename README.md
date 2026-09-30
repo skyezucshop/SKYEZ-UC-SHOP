@@ -1,2 +1,7 @@
-# SKYEZ-UC-SHOP
-Skyez UC Shop — PUBG Mobile UC
+# Skyez UC Shop
+
+Сайт для заказа UC PUBG Mobile.
+
+Пакеты: 60 UC — 79 ₽; 325 UC — 399 ₽; 660 UC — 799 ₽; 1 800 UC — 1 990 ₽; 3 850 UC — 3 990 ₽; 8 100 UC — 7 990 ₽.
+
+Цены заданы для макета и редактируются в `script.js`. Поддержка: https://t.me/skyezq
