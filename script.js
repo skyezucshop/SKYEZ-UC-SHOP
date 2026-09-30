@@ -15,54 +15,67 @@ const select = document.getElementById('selectedPack');
 const form = document.getElementById('orderForm');
 const toast = document.getElementById('toast');
 
-grid.innerHTML = PACKS.map(pack => `
+function formatUc(value) {
+  return value.toLocaleString('ru-RU');
+}
+
+grid.innerHTML = PACKS.map((pack) => `
   <article class="pack ${pack.popular ? 'popular' : ''}">
     ${pack.popular ? '<div class="badge">ПОПУЛЯРНЫЙ</div>' : ''}
-    <img class="pack-image" src="${pack.image}" alt="${pack.uc} UC" loading="lazy" />
-    <div class="uc">${pack.uc.toLocaleString('ru-RU')} <span class="unit">UC</span></div>
-    <small>${pack.label}</small>
-    <div class="price">${pack.price}</div>
-    <button class="btn btn-ghost choose" type="button" data-pack="${pack.id}">Выбрать</button>
+    <img class="pack-image" src="${pack.image}" alt="${formatUc(pack.uc)} UC" loading="lazy" />
+    <div class="pack-body">
+      <div class="pack-top">
+        <div class="uc">${formatUc(pack.uc)} <span class="unit">UC</span></div>
+        <div class="pack-label">${pack.label}</div>
+      </div>
+      <div class="price">${pack.price}</div>
+      <button class="btn btn-ghost choose" type="button" data-pack="${pack.id}">Выбрать</button>
+    </div>
   </article>
 `).join('');
 
-select.innerHTML = PACKS.map(pack =>
-  `<option value="${pack.id}">${pack.uc.toLocaleString('ru-RU')} UC — ${pack.price}</option>`
+select.innerHTML = PACKS.map((pack) =>
+  `<option value="${pack.id}">${formatUc(pack.uc)} UC — ${pack.price}</option>`
 ).join('');
 
-document.querySelectorAll('.choose').forEach(button => {
+document.querySelectorAll('.choose').forEach((button) => {
   button.addEventListener('click', () => {
     select.value = button.dataset.pack;
     document.getElementById('order').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    setTimeout(() => document.getElementById('nickname').focus(), 450);
+    window.setTimeout(() => document.getElementById('nickname').focus(), 450);
   });
 });
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const data = new FormData(form);
-  const pack = PACKS.find(item => item.id === data.get('pack'));
+  const pack = PACKS.find((item) => item.id === data.get('pack'));
   const nickname = String(data.get('nickname')).trim();
   const playerId = String(data.get('playerId')).trim();
+
+  if (!pack || !nickname || !playerId) {
+    showToast('Заполните все поля.');
+    return;
+  }
 
   const message = [
     'Здравствуйте! Хочу заказать UC.',
     `Ник: ${nickname}`,
     `PUBG Mobile ID: ${playerId}`,
-    `Пакет: ${pack.uc} UC`,
-    `Цена на сайте: ${pack.price}`
+    `Пакет: ${formatUc(pack.uc)} UC`,
+    `Цена на сайте: ${pack.price}`,
   ].join('\n');
 
   const url = `${TELEGRAM_URL}?text=${encodeURIComponent(message)}`;
   window.open(url, '_blank', 'noopener,noreferrer');
-  showToast('Заказ подготовлен — открываю Telegram.');
+  showToast('Открываю Telegram с готовым заказом.');
 });
 
 function showToast(message) {
   toast.textContent = message;
   toast.classList.add('show');
   clearTimeout(showToast.timer);
-  showToast.timer = setTimeout(() => toast.classList.remove('show'), 3000);
+  showToast.timer = window.setTimeout(() => toast.classList.remove('show'), 2800);
 }
 
 document.getElementById('year').textContent = new Date().getFullYear();

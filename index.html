@@ -3,25 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Skyez UC Shop — покупка UC для PUBG Mobile. Выберите пакет и оформите заказ через Telegram." />
-  <title>Skyez UC Shop — PUBG Mobile UC</title>
+  <meta name="description" content="Skyez UC Shop — UC для PUBG Mobile. Выберите пакет и отправьте заказ через Telegram." />
+  <title>Skyez UC Shop — UC для PUBG Mobile</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/jpeg" href="avatar.jpg" />
 </head>
 <body>
-  <div class="glow glow-a"></div>
-  <div class="glow glow-b"></div>
-
   <header class="topbar">
     <div class="container nav">
       <a class="brand" href="#top" aria-label="Skyez UC Shop">
         <img class="brand-avatar" src="avatar.jpg" alt="Skyez UC Shop" />
         <span>Skyez <b>UC Shop</b></span>
       </a>
-      <a class="telegram-mini" href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">Telegram <span>↗</span></a>
+      <a class="telegram-mini" href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">@skyezq <span>↗</span></a>
     </div>
   </header>
 
@@ -29,32 +26,23 @@
     <section class="hero container">
       <div class="hero-copy">
         <div class="eyebrow"><span class="dot"></span> PUBG MOBILE · UC SHOP</div>
-        <h1>UC для PUBG Mobile<br><span>быстро и удобно</span></h1>
-        <p>Выберите нужный пакет UC, укажите свой PUBG Mobile ID и отправьте заказ. Все вопросы — в Telegram.</p>
+        <h1>UC для <span>PUBG Mobile</span></h1>
+        <p>Выбирайте пакет, отправляйте PUBG Mobile ID — заказ откроется сразу в Telegram.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#packs">Выбрать UC</a>
-          <a class="btn btn-ghost" href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">Написать @skyezq</a>
+          <a class="btn btn-ghost" href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">Telegram ↗</a>
         </div>
-        <div class="trust-row">
-          <span>⚡ Быстрая обработка</span>
-          <span>🔒 Безопасный заказ</span>
-          <span>💬 Поддержка в Telegram</span>
+        <div class="hero-meta">
+          <span><i></i> Быстрая обработка</span>
+          <span><i></i> Без пароля</span>
         </div>
       </div>
 
-      <div class="hero-card hero-image-card">
-        <img class="hero-photo" src="avatar.jpg" alt="Skyez UC Shop" />
-        <div class="hero-card-top">
-          <span class="card-label">SKYEZ UC</span>
-          <span class="status"><i></i> online</span>
-        </div>
-        <div class="coin">UC</div>
-        <div class="hero-price">Игровая валюта</div>
-        <p>Пополняйте аккаунт PUBG Mobile без лишних шагов.</p>
-        <div class="hero-card-footer">
-          <span>Support</span>
-          <a href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">@skyezq</a>
-        </div>
+      <div class="hero-card">
+        <img src="avatar.jpg" alt="Skyez UC Shop" />
+        <div class="hero-overlay"></div>
+        <div class="hero-tag">SKYEZ UC SHOP</div>
+        <a class="hero-contact" href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">@skyezq ↗</a>
       </div>
     </section>
 
@@ -62,62 +50,37 @@
       <div class="section-head">
         <div>
           <div class="eyebrow">Каталог</div>
-          <h2>Выберите пакет UC</h2>
+          <h2>Выберите пакет</h2>
         </div>
-        <div class="note">Цены указаны в условных единицах — замените их в <code>script.js</code> перед публикацией.</div>
+        <div class="section-count">6 пакетов</div>
       </div>
-
-      <div class="uc-packs-banner"><img src="uc-packs.jpg" alt="Пакеты UC для PUBG Mobile" /></div>
 
       <div class="packs" id="packGrid"></div>
     </section>
 
     <section class="order-section container" id="order">
       <div class="order-panel">
-        <div>
-          <div class="eyebrow">Оформление</div>
-          <h2>Оставьте данные для заказа</h2>
-          <p class="muted">После отправки откроется Telegram с готовым текстом заказа для <strong>@skyezq</strong>.</p>
+        <div class="order-copy">
+          <div class="eyebrow">Заказ</div>
+          <h2>Оформить в Telegram</h2>
+          <p>Выберите пакет, укажите ник и PUBG Mobile ID. Мы подготовим сообщение для <strong>@skyezq</strong>.</p>
         </div>
         <form id="orderForm" class="order-form">
           <div class="field-group">
             <label for="nickname">Ник / имя</label>
-            <input id="nickname" name="nickname" placeholder="Например: Skyez" required maxlength="40" />
+            <input id="nickname" name="nickname" placeholder="Ваш ник" required maxlength="40" />
           </div>
           <div class="field-group">
             <label for="playerId">PUBG Mobile ID</label>
-            <input id="playerId" name="playerId" placeholder="Введите игровой ID" required maxlength="30" />
+            <input id="playerId" name="playerId" placeholder="Игровой ID" required maxlength="30" inputmode="numeric" />
           </div>
           <div class="field-group">
             <label for="selectedPack">Пакет</label>
             <select id="selectedPack" name="pack" required></select>
           </div>
-          <button class="btn btn-primary btn-full" type="submit">Оформить через Telegram ↗</button>
-          <div class="form-hint">Сайт не запрашивает пароль или код подтверждения от аккаунта.</div>
+          <button class="btn btn-primary btn-full" type="submit">Открыть Telegram ↗</button>
+          <div class="form-hint">Пароль, SMS-коды и коды 2FA не нужны.</div>
         </form>
-      </div>
-    </section>
-
-    <section class="faq container">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">FAQ</div>
-          <h2>Частые вопросы</h2>
-        </div>
-      </div>
-      <div class="faq-grid">
-        <details>
-          <summary>Что нужно для покупки?</summary>
-          <p>Достаточно выбрать пакет и указать корректный PUBG Mobile ID. После этого заказ передаётся в Telegram.</p>
-        </details>
-        <details>
-          <summary>Где получить помощь?</summary>
-          <p>По всем вопросам обращайтесь в Telegram: <a href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">@skyezq</a>.</p>
-        </details>
-        <details>
-          <summary>Нужно ли сообщать пароль?</summary>
-          <p>Нет. Не передавайте пароль, SMS-коды, коды 2FA или резервные коды.</p>
-        </details>
       </div>
     </section>
   </main>
@@ -125,8 +88,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <span>© <span id="year"></span> Skyez UC Shop</span>
-      <span>PUBG Mobile является товарным знаком соответствующего правообладателя. Skyez UC Shop не заявляет о своей аффилированности с PUBG Mobile.</span>
-      <a href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">@skyezq</a>
+      <a href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">Telegram @skyezq ↗</a>
     </div>
   </footer>
 
