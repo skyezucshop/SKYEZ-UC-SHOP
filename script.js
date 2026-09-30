@@ -14,44 +14,64 @@ const grid = document.getElementById('packGrid');
 const select = document.getElementById('selectedPack');
 const form = document.getElementById('orderForm');
 const toast = document.getElementById('toast');
+const previewImage = document.getElementById('selectedPreviewImage');
+const previewText = document.getElementById('selectedPreviewText');
 
 function formatUc(value) {
   return value.toLocaleString('ru-RU');
 }
 
-grid.innerHTML = PACKS.map((pack) => `
-  <article class="pack ${pack.popular ? 'popular' : ''}">
-    ${pack.popular ? '<div class="badge">ПОПУЛЯРНЫЙ</div>' : ''}
-    <img class="pack-image" src="${pack.image}" alt="${formatUc(pack.uc)} UC" loading="lazy" />
-    <div class="pack-body">
-      <div class="pack-top">
-        <div class="uc">${formatUc(pack.uc)} <span class="unit">UC</span></div>
-        <div class="pack-label">${pack.label}</div>
+function renderPacks() {
+  grid.innerHTML = PACKS.map((pack) => `
+    <article class="pack ${pack.popular ? 'popular' : ''}">
+      ${pack.popular ? '<div class="badge">ПОПУЛЯРНЫЙ</div>' : ''}
+      <img class="pack-image" src="${pack.image}" alt="${formatUc(pack.uc)} UC — ${pack.price}" loading="lazy" />
+      <div class="pack-body">
+        <div class="pack-top">
+          <div class="uc">${formatUc(pack.uc)} <span class="unit">UC</span></div>
+          <div class="pack-label">${pack.label}</div>
+        </div>
+        <div class="price">${pack.price}</div>
+        <button class="btn btn-ghost choose" type="button" data-pack="${pack.id}">Выбрать <span>→</span></button>
       </div>
-      <div class="price">${pack.price}</div>
-      <button class="btn btn-ghost choose" type="button" data-pack="${pack.id}">Выбрать</button>
-    </div>
-  </article>
-`).join('');
+    </article>
+  `).join('');
+}
 
-select.innerHTML = PACKS.map((pack) =>
-  `<option value="${pack.id}">${formatUc(pack.uc)} UC — ${pack.price}</option>`
-).join('');
+function renderSelect() {
+  select.innerHTML = PACKS.map((pack) =>
+    `<option value="${pack.id}">${formatUc(pack.uc)} UC — ${pack.price}</option>`
+  ).join('');
+}
 
-document.querySelectorAll('.choose').forEach((button) => {
-  button.addEventListener('click', () => {
-    select.value = button.dataset.pack;
-    document.getElementById('order').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    window.setTimeout(() => document.getElementById('nickname').focus(), 450);
-  });
+function updatePreview(packId) {
+  const pack = PACKS.find((item) => item.id === packId) || PACKS[1];
+  previewImage.src = pack.image;
+  previewImage.alt = `${formatUc(pack.uc)} UC`;
+  previewText.textContent = `${formatUc(pack.uc)} UC · ${pack.price}`;
+}
+
+renderPacks();
+renderSelect();
+updatePreview(select.value);
+
+grid.addEventListener('click', (event) => {
+  const button = event.target.closest('.choose');
+  if (!button) return;
+  select.value = button.dataset.pack;
+  updatePreview(select.value);
+  document.getElementById('order').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  window.setTimeout(() => document.getElementById('nickname').focus(), 450);
 });
+
+select.addEventListener('change', () => updatePreview(select.value));
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const data = new FormData(form);
   const pack = PACKS.find((item) => item.id === data.get('pack'));
-  const nickname = String(data.get('nickname')).trim();
-  const playerId = String(data.get('playerId')).trim();
+  const nickname = String(data.get('nickname') || '').trim();
+  const playerId = String(data.get('playerId') || '').trim();
 
   if (!pack || !nickname || !playerId) {
     showToast('Заполните все поля.');
@@ -68,7 +88,7 @@ form.addEventListener('submit', (event) => {
 
   const url = `${TELEGRAM_URL}?text=${encodeURIComponent(message)}`;
   window.open(url, '_blank', 'noopener,noreferrer');
-  showToast('Открываю Telegram с готовым заказом.');
+  showToast('Telegram откроется с готовым заказом.');
 });
 
 function showToast(message) {
