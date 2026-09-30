@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/jpeg" href="avatar.jpg" />
 </head>
 <body>
   <div class="glow glow-a"></div>
@@ -17,7 +18,7 @@
   <header class="topbar">
     <div class="container nav">
       <a class="brand" href="#top" aria-label="Skyez UC Shop">
-        <span class="brand-mark">S</span>
+        <img class="brand-avatar" src="avatar.jpg" alt="Skyez UC Shop" />
         <span>Skyez <b>UC Shop</b></span>
       </a>
       <a class="telegram-mini" href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">Telegram <span>↗</span></a>
@@ -41,7 +42,8 @@
         </div>
       </div>
 
-      <div class="hero-card">
+      <div class="hero-card hero-image-card">
+        <img class="hero-photo" src="avatar.jpg" alt="Skyez UC Shop" />
         <div class="hero-card-top">
           <span class="card-label">SKYEZ UC</span>
           <span class="status"><i></i> online</span>
@@ -56,28 +58,18 @@
       </div>
     </section>
 
-    <section class="promo container" aria-label="Skyez UC Shop">
-      <div class="promo-slider">
-        <img class="promo-image active" src="banner-1.jpg" alt="Skyez UC Shop — актуальный прайс" />
-        <img class="promo-image" src="banner-2.jpg" alt="Skyez UC Shop — PUBG Mobile UC" />
-        <div class="promo-dots">
-          <button class="promo-dot active" type="button" aria-label="Баннер 1"></button>
-          <button class="promo-dot" type="button" aria-label="Баннер 2"></button>
-        </div>
-      </div>
-    </section>
-
     <section id="packs" class="section container">
       <div class="section-head">
         <div>
           <div class="eyebrow">Каталог</div>
           <h2>Выберите пакет UC</h2>
         </div>
-        <div class="note">Цены указаны в ₽. Заказ и подтверждение оплаты — через <a href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">@skyezq</a>.</div>
+        <div class="note">Цены указаны в условных единицах — замените их в <code>script.js</code> перед публикацией.</div>
       </div>
 
+      <div class="uc-packs-banner"><img src="uc-packs.jpg" alt="Пакеты UC для PUBG Mobile" /></div>
+
       <div class="packs" id="packGrid"></div>
-      <p class="price-note">* Стоимость может меняться. Актуальную цену перед оплатой уточняйте у <a href="https://t.me/skyezq" target="_blank" rel="noopener noreferrer">@skyezq</a>.</p>
     </section>
 
     <section class="order-section container" id="order">
