@@ -1,5 +1,3 @@
-const PAYMENT_API_URL = 'https://YOUR-WORKER.workers.dev';
-
 const PACKS = [
   { id: '60', uc: 60, price: '79 ₽', amount: '79.00', label: 'Стартовый', image: 'pack-60.jpg' },
   { id: '325', uc: 325, price: '399 ₽', amount: '399.00', label: 'Популярный', popular: true, image: 'pack-325.jpg' },
@@ -63,7 +61,7 @@ function showToast(message) {
 function setLoading(loading) {
   submitButton.disabled = loading;
   submitButton.style.opacity = loading ? '0.65' : '';
-  submitButton.innerHTML = loading ? 'Создаём оплату…' : 'Перейти к оплате <span>→</span>';
+  submitButton.innerHTML = loading ? 'Открываем Telegram…' : 'Отправить заявку <span>→</span>';
 }
 
 renderPacks();
@@ -87,7 +85,7 @@ grid.addEventListener('click', event => {
 
 select.addEventListener('change', () => updatePreview(select.value));
 
-form.addEventListener('submit', async event => {
+form.addEventListener('submit', event => {
   event.preventDefault();
 
   const data = new FormData(form);
@@ -106,40 +104,18 @@ form.addEventListener('submit', async event => {
     return;
   }
 
-  if (PAYMENT_API_URL.includes('YOUR-WORKER')) {
-    showToast('Укажите адрес Cloudflare Worker в script.js.');
-    return;
-  }
-
   setLoading(true);
-  showToast('Создаём оплату…');
 
-  try {
-    const response = await fetch(`${PAYMENT_API_URL}/create-payment`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({packId, nickname, playerId})
-    });
+  const message = [
+    'Здравствуйте! Хочу оформить заказ в SKYEZ UC SHOP.',
+    '',
+    `Пакет: ${formatUc(pack.uc)} UC — ${pack.price}`,
+    `Ник: ${nickname}`,
+    `PUBG Mobile ID: ${playerId}`
+  ].join('\n');
 
-    const result = await response.json();
-
-    if (!response.ok || !result.confirmation_url) {
-      throw new Error(result.error || 'Не удалось создать платёж.');
-    }
-
-    sessionStorage.setItem('skyez_payment', JSON.stringify({
-      paymentId: result.payment_id,
-      pack: `${formatUc(pack.uc)} UC`,
-      nickname,
-      playerId
-    }));
-
-    window.location.href = result.confirmation_url;
-  } catch (error) {
-    console.error(error);
-    showToast(error.message || 'Ошибка создания платежа.');
-    setLoading(false);
-  }
+  const telegramUrl = `https://t.me/skyezq?text=${encodeURIComponent(message)}`;
+  window.location.href = telegramUrl;
 });
 
 document.getElementById('year').textContent = new Date().getFullYear();
